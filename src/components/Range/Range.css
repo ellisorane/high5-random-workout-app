@@ -1,0 +1,24 @@
+/* .Range {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+p {
+    padding: 0 10px;
+}
+
+input {
+    width: 60px;
+    height: 20px;
+}
+
+@media (min-width: 500px) {
+    .Range {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+    }
+     
+}

@@ -1,0 +1,16 @@
+.Main {
+    padding-top: 300px;
+    /* background-color: blue; */
+}
+
+.mainButton {
+    font-size: 20px;
+    margin: 10px;
+    padding: 10px;
+}
+
+@media (min-width: 500px) {
+    .Main {
+        padding-top: 150px;
+    }
+}

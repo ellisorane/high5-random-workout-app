@@ -1,0 +1,16 @@
+.Yes {
+  color: rgb(0, 110, 0);
+}
+
+.Yes:hover {
+  color: rgb(0, 190, 0);
+}
+
+.No {
+  color: rgb(195, 0, 0);
+}
+
+.No:hover {
+  color: rgb(255, 0, 0);
+}
+  
