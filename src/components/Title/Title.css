@@ -1,0 +1,10 @@
+.Title {
+    margin-top: 100px;
+}
+
+@media (max-width: 500px) {
+    .Title {
+        font-size: 40px;
+        margin-top: 80px;
+    }
+}

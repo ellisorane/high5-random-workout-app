@@ -1,0 +1,13 @@
+.signInput {
+    width: 40%
+}
+
+@media (max-width: 500px) {
+    .signInput {
+        width: 80%;
+    }
+
+    .SignIn h1  {
+        font-size: 40px;
+    }
+}

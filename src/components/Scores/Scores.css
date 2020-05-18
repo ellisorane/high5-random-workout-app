@@ -1,0 +1,9 @@
+.Scores li {
+    list-style-type: none;
+}
+
+@media (max-width: 500px) {
+    .Scores h1  {
+        font-size: 40px;
+    }
+}
