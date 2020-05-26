@@ -2,6 +2,16 @@
     width: 40%
 }
 
+.signInLink {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.signInLink:hover {
+    color: orangered;
+}
+
 @media (max-width: 500px) {
     .signInput {
         width: 80%;

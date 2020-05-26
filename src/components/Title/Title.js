@@ -3,7 +3,7 @@ import './Title.css'
 
 
 const title = () => (
-            <h1 className="Title">Random Workout Challenge</h1>
+            <h1 className="Title">High 5!</h1>
     )
 
 export default title

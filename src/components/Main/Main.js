@@ -4,9 +4,14 @@ import './Main.css'
 import Button from '../Button/Button'
 
 const main = (props) => {
-    console.log(props)
+    // console.log(props)
+    let greeting = <h5>Hi {props.username}. Get Ready for your workout!</h5>
+    if(!props.username) {
+        greeting = <h5>Hi there. Get Ready for your workout!</h5>
+    }
     return (
         <div className="Main">
+            {greeting}
             <Range changeMin={props.changeMin} changeMax={props.changeMax} min={props.min} max={props.max} />
             <p>Workout: {props.currentWorkout}</p>
             <p>Reps: {props.reps}</p>

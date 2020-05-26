@@ -1,0 +1,71 @@
+.Scores li {
+    list-style-type: none;
+    font-size: 25px;
+    padding: 15px;
+}
+
+.headingDiv {
+    border: 2px solid black;
+    border-top: none;
+    width: 200px;
+    padding: 10px;
+}
+
+.tableCols {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.dataRow {
+    padding: 10px;
+    width: 200px;
+    border: 2px solid black;
+    border-bottom: none;
+    display: flex;
+    flex-direction: column;
+}
+
+@media(max-width: 345px) {
+    .Scores h1  {
+        font-size: 30px;
+    }
+
+    .Scores li{ 
+        padding: 7px 0;
+        font-size: 9px;
+    }
+    .headingDiv, .dataRow {
+        width: 30px;
+        font-size: 8px;
+    }
+}
+
+@media (min-width: 346px) and (max-width: 500px) {
+    .Scores h1  {
+        font-size: 30px;
+    }
+
+    .headingDiv, .dataRow {
+        width: 45px;
+    }
+
+    .Scores li{ 
+        padding: 10px 0;
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 501px) and (max-width: 911px) {
+    .Scores h1  {
+        font-size: 40px;
+    }
+
+    .headingDiv, .dataRow {
+        width: 100px;   
+    }
+
+    .Scores li { 
+        font-size: 20px;
+    }
+}

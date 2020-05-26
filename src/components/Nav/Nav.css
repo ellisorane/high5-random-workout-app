@@ -27,9 +27,14 @@ nav a {
     color: white;
 }
 
-nav a:hover, a:active {
+nav a:hover, 
+nav a:active,
+nav a:focus,
+nav a.active {
     color: orange;
 }
+
+
 
 @media (max-width: 500px) {
     .Nav {

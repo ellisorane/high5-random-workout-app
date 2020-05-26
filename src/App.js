@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
+import axios from './axios'
 
 import './App.css'
 import Modal from './components/Modal/Modal'
 import Main from './components/Main/Main'
 import Title from './components/Title/Title'
-import Scores from './components/Scores/Scores'
+import Scores from './container/Scores/Scores'
 import Nav from './components/Nav/Nav'
 import SignIn from './components/SignIn/SignIn'
 
@@ -19,11 +20,30 @@ class App extends Component {
       'Squats'
     ],
     currentWorkout: '',
-    min: '',
-    max: '',
+    min: '5',
+    max: '20',
     reps: 0,
     showModal: false,
-    message: ''
+    message: '',
+    signIn: 'Sign In',
+    username: null,
+    usernames: null,
+    error: false
+  }
+
+  logOutHandler = () => {
+    if(this.state.signIn === 'Log Out') {
+      this.setState({signIn: 'Sign In', username: null})
+    }
+  }
+
+  changeUsernameHandler = (e) => {
+    const targetVal = e.target.value
+    this.setState({username: targetVal})
+  }
+
+  setUsernameHandler = () => {
+    this.setState({signIn: 'Log Out'}) 
   }
 
   selectWorkoutHandler = () => {
@@ -48,11 +68,35 @@ class App extends Component {
   showModalHandler = (e) => {
     this.setState({ showModal: true })
     const target = e.target 
-    if(target.textContent === 'YES') {
-      this.setState({ message: 'Good Job!', currentWorkout: '', reps: 0, min: '', max: '' })
+
+    if(target.textContent === 'YES'  && this.state.username !== null) {
+
+      this.setState({ message: `Good Job ${this.state.username}!`, currentWorkout: '', reps: 0 })
+
+      const data = {
+        username: this.state.username,
+        currentWorkout: this.state.currentWorkout,
+        reps: this.state.reps
+      }
+
+      this.postScore(this.state.currentWorkout, data)
+
+    } else if (target.textContent === 'YES') {
+      this.setState({ message: 'Good Job!', currentWorkout: '', reps: 0 })
     } else {
-      this.setState({ message: 'Better Luck Next Time!', currentWorkout: '', reps: 0, min: '', max: '' })
+      this.setState({ message: 'Better Luck Next Time!', currentWorkout: '', reps: 0 })
     }
+  }
+
+  postScore = (workout, data) => {
+    axios.post(`/scores/${workout}.json`, data)
+    .then(res => {
+      console.log('Data sent', res.data)
+    })
+    .catch( error => {
+      this.setState( { error: true } );
+      console.log(error)
+      });
   }
 
   closeModalHandler = () => {
@@ -67,28 +111,30 @@ class App extends Component {
   setMaxHandler = (e) => {
     const target = e.target.value
     this.setState({ max: target })
-    console.log(this.state.max)
   }
 
   render() {
     return (
       <div className="App">
-        <Nav />
+        <Nav signIn={this.state.signIn} clicked={this.logOutHandler} />
         <Title />
         <Modal clicked={this.closeModalHandler} showModal={this.state.showModal} message={this.state.message}/>
         <Switch>
-          <Route path="/" exact component={SignIn} />
-          <Route path="/workouts" render={(props) => (
+          <Route path="/" exact render= {(props) => (
+            <SignIn clicked={this.setUsernameHandler} changed={this.changeUsernameHandler} {...props} />
+          )} />
+          <Route path="/workouts" render = {(props) => (
             <Main 
               clicked={this.workoutHandler} 
               currentWorkout={this.state.currentWorkout} 
               reps={this.state.reps}
               min={this.state.min}
               max={this.state.max}
-              changeMin={(e) => this.setMinHandler(e)}
-              changeMax={(e) => this.setMaxHandler(e)}
-              clickYes={(e) => this.showModalHandler(e)}
-              clickNo={(e) => this.showModalHandler(e)}
+              changeMin={this.setMinHandler}
+              changeMax={this.setMaxHandler}
+              clickYes={this.showModalHandler}
+              clickNo={this.showModalHandler}
+              username={this.state.username}
               {...props} 
             />
           )} />
