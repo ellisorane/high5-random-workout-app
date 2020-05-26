@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import axios from './axios'
 
 import './App.css'
@@ -120,9 +120,6 @@ class App extends Component {
         <Title />
         <Modal clicked={this.closeModalHandler} showModal={this.state.showModal} message={this.state.message}/>
         <Switch>
-          <Route path="/" exact render= {(props) => (
-            <SignIn clicked={this.setUsernameHandler} changed={this.changeUsernameHandler} {...props} />
-          )} />
           <Route path="/workouts" render = {(props) => (
             <Main 
               clicked={this.workoutHandler} 
@@ -139,6 +136,12 @@ class App extends Component {
             />
           )} />
           <Route path="/scores" component={Scores} />
+
+          <Route path="/" exact render= {(props) => (
+            <SignIn clicked={this.setUsernameHandler} changed={this.changeUsernameHandler} {...props} />
+          )} />
+
+          <Redirect to="/" />
         </Switch>
         
       </div>
