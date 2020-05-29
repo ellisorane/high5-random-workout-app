@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import axios from './axios'
 
 import './App.css'
@@ -27,11 +27,12 @@ class App extends Component {
     message: '',
     signIn: 'Sign In',
     username: null,
-    usernames: null,
+    workoutStarted: false,
     error: false
   }
 
   logOutHandler = () => {
+    this.setState({ workoutStarted: false })
     if(this.state.signIn === 'Log Out') {
       this.setState({signIn: 'Sign In', username: null})
     }
@@ -43,6 +44,7 @@ class App extends Component {
   }
 
   setUsernameHandler = () => {
+    if(this.state.username !== null)
     this.setState({signIn: 'Log Out'}) 
   }
 
@@ -66,7 +68,7 @@ class App extends Component {
   }
 
   showModalHandler = (e) => {
-    this.setState({ showModal: true })
+    this.setState({ showModal: true, workoutStarted: true })
     const target = e.target 
 
     if(target.textContent === 'YES'  && this.state.username !== null) {
@@ -116,38 +118,37 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Nav signIn={this.state.signIn} clicked={this.logOutHandler} />
-        <Title />
-        <Modal clicked={this.closeModalHandler} showModal={this.state.showModal} message={this.state.message}/>
-        <Switch>
-          <Route path="/workouts" render = {(props) => (
-            <Main 
-              clicked={this.workoutHandler} 
-              currentWorkout={this.state.currentWorkout} 
-              reps={this.state.reps}
-              min={this.state.min}
-              max={this.state.max}
-              changeMin={this.setMinHandler}
-              changeMax={this.setMaxHandler}
-              clickYes={this.showModalHandler}
-              clickNo={this.showModalHandler}
-              username={this.state.username}
-              {...props} 
-            />
-          )} />
-          <Route path="/scores" component={Scores} />
+          <Nav signIn={this.state.signIn} clicked={this.logOutHandler} />
+          <Title />
+          <Modal clicked={this.closeModalHandler} showModal={this.state.showModal} message={this.state.message}/>
+          <Switch>
+            <Route path="/workouts" render = {(props) => (
+              <Main 
+                clicked={this.workoutHandler} 
+                currentWorkout={this.state.currentWorkout} 
+                reps={this.state.reps}
+                min={this.state.min}
+                max={this.state.max}
+                changeMin={this.setMinHandler}
+                changeMax={this.setMaxHandler}
+                clickYes={this.showModalHandler}
+                clickNo={this.showModalHandler}
+                username={this.state.username}
+                workoutStarted={this.state.workoutStarted}
+                {...props} 
+              />
+            )} />
+            <Route path="/scores" component={Scores} />
 
-          <Route path="/" exact render= {(props) => (
-            <SignIn clicked={this.setUsernameHandler} changed={this.changeUsernameHandler} {...props} />
-          )} />
+            <Route path="/" render= {(props) => (
+              <SignIn clicked={this.setUsernameHandler} changed={this.changeUsernameHandler} {...props} />
+            )} />
 
-          <Redirect to="/" />
-        </Switch>
-        
+          </Switch>
       </div>
     );
   }
   
 }
 
-export default App;
+export default App

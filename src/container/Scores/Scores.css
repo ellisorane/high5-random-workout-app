@@ -9,6 +9,7 @@
     border-top: none;
     width: 200px;
     padding: 10px;
+    font-weight: bold;
 }
 
 .tableCols {
@@ -26,7 +27,7 @@
     flex-direction: column;
 }
 
-@media(max-width: 345px) {
+/* @media(max-width: 345px) {
     .Scores h1  {
         font-size: 30px;
     }
@@ -36,12 +37,12 @@
         font-size: 9px;
     }
     .headingDiv, .dataRow {
-        width: 30px;
+        width: 0px;
         font-size: 8px;
     }
-}
+} */
 
-@media (min-width: 346px) and (max-width: 500px) {
+@media (max-width: 500px) {
     .Scores h1  {
         font-size: 30px;
     }

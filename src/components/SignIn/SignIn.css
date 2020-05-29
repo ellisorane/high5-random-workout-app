@@ -4,12 +4,12 @@
 
 .signInLink {
     text-decoration: none;
-    color: black;
+    color: rgba(84,118,221,1);
     font-weight: bold;
 }
 
 .signInLink:hover {
-    color: orangered;
+    color: rgb(22,219,147);
 }
 
 @media (max-width: 500px) {

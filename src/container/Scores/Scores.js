@@ -120,6 +120,7 @@ class Scores extends Component {
         return (
             <div className="Scores">
                 <h1>High Scores</h1>
+                <p>Top 3 scores</p>
                 <div>
                     {table}
                 </div>
