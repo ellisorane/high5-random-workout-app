@@ -6,7 +6,7 @@ import './App.css'
 import Modal from './components/Modal/Modal'
 import Main from './components/Main/Main'
 import Title from './components/Title/Title'
-import Scores from './container/Scores/Scores'
+import Scores from './components/Scores/Scores'
 import Nav from './components/Nav/Nav'
 import SignIn from './components/SignIn/SignIn'
 
