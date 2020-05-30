@@ -17,7 +17,7 @@ body, html {
   font-size: 30px;
   color: white;
   width: 60%;
-  height: 100%;
+  min-height: 100vh;
   background-color: black;
   margin: auto;
   padding: 100px 30px;
