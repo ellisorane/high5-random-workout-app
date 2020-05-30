@@ -1,5 +1,6 @@
 body, html {
   height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
   background: rgb(22,219,147);
@@ -9,19 +10,18 @@ body, html {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#16db93', endColorstr='#5476dd',GradientType=1 );  
   background-repeat: no-repeat;
   background-attachment: fixed;
-  
 }
 
 .App {
-  position: relative;
   text-align: center;
   font-size: 30px;
   color: white;
   width: 60%;
-  height: 100vh;
+  height: 100%;
   background-color: black;
   margin: auto;
-  padding: 100px;
+  padding: 100px 30px;
+
 }
 
 button {
@@ -39,10 +39,12 @@ button:hover {
 @media (max-width: 500px) {
   body, html {
     background: black;
+    width: 100%;
   }
 
   .App {
     width: 100%;
+    padding: 50px 0;
   }
 }
 
